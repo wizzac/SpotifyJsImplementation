@@ -1,0 +1,20 @@
+html
+    #container
+        .container
+        p(style="color:black;font-size:50px") Buscar Canciones
+        form(method="post"  action='/search')
+            if token!==undefined
+                input(type="hidden" name='token' value=token)
+            input(type="text" name='stringToSearch')
+            input(type="submit" value="Buscar")
+            
+if items !== undefined
+    if items.length > 0
+        p Resultado
+        #list
+        ul
+            each item in items
+                li=item.name +" By: "+item.artists[0].name
+                a(href=item.external_urls.spotify target="_blank") link!
+    else 
+        p No hay Elementos para mostrar
